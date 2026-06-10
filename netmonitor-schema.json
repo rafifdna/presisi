@@ -1,0 +1,36 @@
+{
+  "title": "NetMonitor Settings",
+  "description": "Managed settings for the NetMonitor menu bar app.",
+  "properties": {
+    "MonitorHost": {
+      "type": "string",
+      "title": "Monitor Host",
+      "default": "1.1.1.1",
+      "description": "Host used for the TCP latency / reachability check. Use an internal server to monitor on-prem reachability, or a public host (1.1.1.1 / 8.8.8.8) for general internet."
+    },
+    "MonitorPort": {
+      "type": "integer",
+      "title": "Monitor Port",
+      "default": 443,
+      "description": "TCP port to connect to on the host. 443 is a safe default."
+    },
+    "CheckIntervalSeconds": {
+      "type": "integer",
+      "title": "Check Interval (seconds)",
+      "default": 10,
+      "description": "How often to re-measure latency."
+    },
+    "WarnLatencyMs": {
+      "type": "integer",
+      "title": "Warn Threshold (ms)",
+      "default": 150,
+      "description": "Latency at or above this turns the indicator yellow."
+    },
+    "CriticalLatencyMs": {
+      "type": "integer",
+      "title": "Critical Threshold (ms)",
+      "default": 300,
+      "description": "Latency at or above this turns the indicator red."
+    }
+  }
+}

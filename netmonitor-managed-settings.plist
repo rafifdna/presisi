@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Sample managed-settings payload for Jamf "Application & Custom Settings".
+     Preference domain: com.mekari.netmonitor
+     These values are read by the app via UserDefaults at runtime. -->
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>MonitorHost</key>
+    <string>1.1.1.1</string>
+
+    <key>MonitorPort</key>
+    <integer>443</integer>
+
+    <key>CheckIntervalSeconds</key>
+    <integer>10</integer>
+
+    <key>WarnLatencyMs</key>
+    <integer>150</integer>
+
+    <key>CriticalLatencyMs</key>
+    <integer>300</integer>
+</dict>
+</plist>

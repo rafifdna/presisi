@@ -1,0 +1,22 @@
+#!/bin/bash
+# postinstall: fix LaunchAgent ownership and load it for the logged-in user.
+set -e
+
+LA="/Library/LaunchAgents/com.mekari.netmonitor.plist"
+
+# launchd requires LaunchAgents in /Library to be owned by root:wheel
+/usr/sbin/chown root:wheel "$LA"
+/bin/chmod 644 "$LA"
+
+# Identify the active GUI user so we can bootstrap into their session immediately.
+consoleUser=$(/usr/bin/stat -f%Su /dev/console)
+
+if [ -n "$consoleUser" ] && [ "$consoleUser" != "root" ] && [ "$consoleUser" != "loginwindow" ]; then
+    uid=$(/usr/bin/id -u "$consoleUser")
+    # Reload cleanly in case a previous version is running
+    /bin/launchctl bootout   gui/"$uid" "$LA" 2>/dev/null || true
+    /bin/launchctl bootstrap gui/"$uid" "$LA" 2>/dev/null || true
+fi
+
+# If no one is logged in now, RunAtLoad will start it at next login.
+exit 0
